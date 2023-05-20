@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Auth;
+namespace App\Repositories\Auth;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-interface AuthServiceInterface
+interface AuthRepositoryInterface
 {
     public function submit(ParameterBag $data);
 }

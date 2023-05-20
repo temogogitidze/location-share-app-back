@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use App\Models\User;
 use App\Notifications\LoginNeedsVerification;
 use App\Repositories\Auth\AuthRepositoryInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -12,7 +13,7 @@ class AuthService implements AuthServiceInterface
     public function __construct(private AuthRepositoryInterface $repository)
     {
     }
-    public function submit(ParameterBag $data)
+    public function submit(ParameterBag $data): User
     {
         $user = $this->repository->submit($data);
 

@@ -11,7 +11,7 @@ class AuthRepository implements AuthRepositoryInterface
     {
     }
 
-    public function submit(ParameterBag $data)
+    public function submit(ParameterBag $data): User
     {
         return $this->model->firstOrCreate([
             'phone' => $data->get('phone')

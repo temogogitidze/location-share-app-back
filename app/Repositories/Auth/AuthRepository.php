@@ -2,13 +2,19 @@
 
 namespace App\Repositories\Auth;
 
-use App\Services\Auth\AuthServiceInterface;
+use App\Models\User;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-class AuthRepository implements AuthServiceInterface
+class AuthRepository implements AuthRepositoryInterface
 {
+    public function __construct(private User $model)
+    {
+    }
+
     public function submit(ParameterBag $data)
     {
-        // TODO: Implement submit() method.
+        return $this->model->firstOrCreate([
+            'phone' => $data->get('phone')
+        ]);
     }
 }

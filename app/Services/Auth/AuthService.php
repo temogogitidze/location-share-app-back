@@ -18,5 +18,7 @@ class AuthService implements AuthServiceInterface
         if ($user) {
             throw new HttpException(401, 'Could not process user with that phone number');
         }
+
+//        $user->notify();
     }
 }

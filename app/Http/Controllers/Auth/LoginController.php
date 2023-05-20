@@ -16,5 +16,7 @@ class LoginController extends Controller
     public function submit(LoginRequest $request)
     {
         $this->service->submit(new ParameterBag($request->validated()));
+
+        return response()->json(['message' => 'Text message notification sent']);
     }
 }

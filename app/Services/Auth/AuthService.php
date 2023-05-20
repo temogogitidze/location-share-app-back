@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use App\Notifications\LoginNeedsVerification;
 use App\Repositories\Auth\AuthRepositoryInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -19,6 +20,8 @@ class AuthService implements AuthServiceInterface
             throw new HttpException(401, 'Could not process user with that phone number');
         }
 
-//        $user->notify();
+        $user->notify(new LoginNeedsVerification());
+
+        return $user;
     }
 }

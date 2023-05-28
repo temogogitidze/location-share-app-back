@@ -34,15 +34,17 @@ class LoginNeedsVerification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toTwilio($notifable)
+    public function toTwilio($notifiable)
     {
+
         $loginCode = rand(111111, 999999);
 
-        $notifable->update([
+        $notifiable->update([
             'login_code' => $loginCode
         ]);
 
         return (new TwilioSmsMessage())
+            ->from(+13156272026)
             ->content("Your login code is: {$loginCode}, kargad sheinaxe bicho");
     }
 

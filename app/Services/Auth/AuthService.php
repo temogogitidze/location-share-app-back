@@ -17,7 +17,7 @@ class AuthService implements AuthServiceInterface
     {
         $user = $this->repository->submit($data);
 
-        if ($user) {
+        if (!$user) {
             throw new HttpException(401, 'Could not process user with that phone number');
         }
 

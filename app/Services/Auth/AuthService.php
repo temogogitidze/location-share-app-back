@@ -25,4 +25,9 @@ class AuthService implements AuthServiceInterface
 
         return $user;
     }
+
+    public function verify(ParameterBag $data)
+    {
+        return $this->repository->verify($data);
+    }
 }

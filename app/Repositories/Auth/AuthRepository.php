@@ -17,4 +17,9 @@ class AuthRepository implements AuthRepositoryInterface
             'phone' => $data->get('phone')
         ]);
     }
+
+    public function verify(ParameterBag $data)
+    {
+        
+    }
 }

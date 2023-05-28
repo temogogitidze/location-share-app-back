@@ -24,6 +24,15 @@ class LoginController extends Controller
 
     public function verify(VerifyRequest $request)
     {
-        $this->service->verify(new ParameterBag($request->validated()));
+        $data = new ParameterBag($request->validated());
+
+        $user = $this->service->verify($data);
+
+        if ($user) {
+            return $user->createToken($data->get('login_code'))->plainTextToken();
+        }
+
+        return response()->json(['message' => 'Invalid verification code.'], 401);
+
     }
 }

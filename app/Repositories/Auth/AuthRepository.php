@@ -20,6 +20,16 @@ class AuthRepository implements AuthRepositoryInterface
 
     public function verify(ParameterBag $data)
     {
-        
+        $user = $this->model->where('phone', $data->get('phone'))
+            ->where('login_code', $data->get('login_code'))
+            ->first();
+
+        if ($user) {
+            $user->update([
+                'login_code' => null
+            ]);
+        }
+
+        return $user;
     }
 }

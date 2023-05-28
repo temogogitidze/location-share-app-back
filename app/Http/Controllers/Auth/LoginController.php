@@ -29,7 +29,7 @@ class LoginController extends Controller
         $user = $this->service->verify($data);
 
         if ($user) {
-            return $user->createToken($data->get('login_code'))->plainTextToken();
+            return $user->createToken($data->get('login_code'))->plainTextToken;
         }
 
         return response()->json(['message' => 'Invalid verification code.'], 401);

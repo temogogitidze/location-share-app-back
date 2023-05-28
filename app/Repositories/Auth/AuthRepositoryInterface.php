@@ -8,4 +8,5 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 interface AuthRepositoryInterface
 {
     public function submit(ParameterBag $data): User;
+    public function verify(ParameterBag $data): User;
 }

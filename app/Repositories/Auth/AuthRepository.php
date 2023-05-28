@@ -18,7 +18,7 @@ class AuthRepository implements AuthRepositoryInterface
         ]);
     }
 
-    public function verify(ParameterBag $data)
+    public function verify(ParameterBag $data): User
     {
         $user = $this->model->where('phone', $data->get('phone'))
             ->where('login_code', $data->get('login_code'))

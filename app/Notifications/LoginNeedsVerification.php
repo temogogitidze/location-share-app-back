@@ -45,7 +45,7 @@ class LoginNeedsVerification extends Notification
 
         return (new TwilioSmsMessage())
             ->from(+13156272026)
-            ->content("Your login code is: {$loginCode}, kargad sheinaxe bicho");
+            ->content("Zdarova bakar shechema, es aris sheni kodi: {$loginCode}, kargad sheinaxe bicho");
     }
 
     /**

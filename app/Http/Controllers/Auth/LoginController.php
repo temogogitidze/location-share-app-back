@@ -22,7 +22,7 @@ class LoginController extends Controller
         return response()->json(['message' => 'Text message notification sent']);
     }
 
-    public function verify(VerifyRequest $request)
+    public function verify(VerifyRequest $request): string | JsonResponse
     {
         $data = new ParameterBag($request->validated());
 

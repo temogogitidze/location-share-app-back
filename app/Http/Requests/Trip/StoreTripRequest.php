@@ -14,7 +14,9 @@ class StoreTripRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'origin' => ['required'],
+            'destination' => ['required'],
+            'destination_name' => ['required']
         ];
     }
 }

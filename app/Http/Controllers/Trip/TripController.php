@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Trip\StoreTripRequest;
 use App\Services\Trip\TripServiceInterface;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\ParameterBag;
 
 class TripController extends Controller
 {
@@ -16,6 +17,6 @@ class TripController extends Controller
 
     public function store(StoreTripRequest $request)
     {
-
+        return $this->service->store(new ParameterBag($request->validated()));
     }
 }

@@ -18,8 +18,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::prefix('trip')->group(function () {
-        Route::post('/trip', [TripController::class, 'store'])->name('trip.store');
-        Route::get('/trip/{trip}', [TripController::class, 'get'])->name('trip.get');
+        Route::post('/', [TripController::class, 'store'])->name('trip.store');
+        Route::get('/{trip}', [TripController::class, 'get'])->name('trip.get');
     });
 
     Route::get('/user', function (Request $request) {

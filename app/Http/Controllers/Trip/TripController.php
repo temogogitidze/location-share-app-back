@@ -26,4 +26,24 @@ class TripController extends Controller
     {
         return $this->service->get($trip->id);
     }
+
+    public function accept(Trip $trip)
+    {
+
+    }
+
+    public function start(Trip $trip)
+    {
+
+    }
+
+    public function end(Trip $trip)
+    {
+
+    }
+
+    public function location(Trip $trip)
+    {
+
+    }
 }

@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DriverRepository implements DriverRepositoryInterface
 {
-
     public function __construct(private Driver $model)
     {
     }
@@ -23,6 +22,8 @@ class DriverRepository implements DriverRepositoryInterface
 
     public function update(ParameterBag $data)
     {
-        // TODO: Implement update() method.
+        $user = Auth::user();
+
+        return $user->driver()->updateOrCreate($data->all());
     }
 }

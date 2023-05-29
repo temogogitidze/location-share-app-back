@@ -25,13 +25,11 @@ class DriverService implements DriverServiceInterface
     {
         $name = $data->get('name');
 
-
         $data->remove('name');
 
         $options = new ParameterBag([
             'relations' => ['driver']
         ]);
-
 
         return $this->repository->update($data, $options, $name);
     }

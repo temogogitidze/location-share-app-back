@@ -15,6 +15,6 @@ class TripRepository implements TripRepositoryInterface
 
     public function store(ParameterBag $data)
     {
-
+        return $this->model->create($data->all());
     }
 }

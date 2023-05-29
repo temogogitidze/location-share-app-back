@@ -3,6 +3,7 @@
 namespace App\Services\Trip;
 
 use App\Repositories\Trip\TripRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class TripService implements TripServiceInterface
@@ -14,7 +15,11 @@ class TripService implements TripServiceInterface
 
     public function store(ParameterBag $data)
     {
-        $this->repository->store($data);
+        $user = Auth::user();
+
+        $data->set('user_id' , $user->id);
+
+        return $this->repository->store($data);
     }
 
 }

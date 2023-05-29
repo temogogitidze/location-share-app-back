@@ -3,6 +3,7 @@
 namespace App\Services\Driver;
 
 use App\Repositories\Driver\DriverRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DriverService implements DriverServiceInterface

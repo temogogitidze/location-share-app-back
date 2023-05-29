@@ -22,6 +22,10 @@ class DriverService implements DriverServiceInterface
     }
     public function update(ParameterBag $data)
     {
+        $name = $data->get('name');
 
+        $data->remove('name');
+
+        $this->repository->update($data);
     }
 }

@@ -7,5 +7,5 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 interface DriverRepositoryInterface
 {
     public function get(ParameterBag $options);
-    public function update();
+    public function update(ParameterBag $data);
 }

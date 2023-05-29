@@ -21,7 +21,7 @@ class DriverRepository implements DriverRepositoryInterface
         return $user->load($relations);
     }
 
-    public function update()
+    public function update(ParameterBag $data)
     {
         // TODO: Implement update() method.
     }

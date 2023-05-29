@@ -2,10 +2,11 @@
 
 namespace App\Repositories\Driver;
 
+use App\Models\User;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 interface DriverRepositoryInterface
 {
-    public function get(ParameterBag $options);
-    public function update(ParameterBag $data);
+    public function get(ParameterBag $options): User;
+    public function update(ParameterBag $data, ParameterBag $options): User;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Driver;
 
+use App\Models\User;
 use App\Repositories\Driver\DriverRepositoryInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -12,7 +13,7 @@ class DriverService implements DriverServiceInterface
     {
     }
 
-    public function get()
+    public function get(): User
     {
         $options = new ParameterBag([
             'relations' => ['driver']
@@ -20,12 +21,16 @@ class DriverService implements DriverServiceInterface
 
         return $this->repository->get($options);
     }
-    public function update(ParameterBag $data)
+    public function update(ParameterBag $data): User
     {
         $name = $data->get('name');
 
+        $options = new ParameterBag([
+            'relations' => ['driver']
+        ]);
+
         $data->remove('name');
 
-        $this->repository->update($data);
+        return $this->repository->update($data, $options);
     }
 }

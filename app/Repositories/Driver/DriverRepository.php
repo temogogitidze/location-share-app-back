@@ -3,6 +3,7 @@
 namespace App\Repositories\Driver;
 
 use App\Models\Driver;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -12,7 +13,7 @@ class DriverRepository implements DriverRepositoryInterface
     {
     }
 
-    public function get(ParameterBag $options)
+    public function get(ParameterBag $options): User
     {
         $relations = $options->get('relations') ?? null;
         $user = Auth::user();
@@ -20,10 +21,14 @@ class DriverRepository implements DriverRepositoryInterface
         return $user->load($relations);
     }
 
-    public function update(ParameterBag $data)
+    public function update(ParameterBag $data, ParameterBag $options): User
     {
+        $relations = $options->get('relations') ?? null;
+
         $user = Auth::user();
 
-        return $user->driver()->updateOrCreate($data->all());
+        $user->driver()->updateOrCreate($data->all());
+
+        return $user->load($relations);
     }
 }

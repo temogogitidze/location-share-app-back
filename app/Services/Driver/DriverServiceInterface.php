@@ -2,10 +2,11 @@
 
 namespace App\Services\Driver;
 
+use App\Models\User;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 interface DriverServiceInterface
 {
-    public function get();
-    public function update(ParameterBag $data);
+    public function get(): User;
+    public function update(ParameterBag $data): User;
 }

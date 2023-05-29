@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Trip;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Trip\AcceptTripRequest;
+use App\Http\Requests\Trip\EndTripRequest;
 use App\Http\Requests\Trip\GetTripRequest;
+use App\Http\Requests\Trip\LocationTripRequest;
+use App\Http\Requests\Trip\StartTripRequest;
 use App\Http\Requests\Trip\StoreTripRequest;
 use App\Models\Trip;
 use App\Services\Trip\TripServiceInterface;
@@ -27,22 +31,22 @@ class TripController extends Controller
         return $this->service->get($trip->id);
     }
 
-    public function accept(Trip $trip)
+    public function accept(Trip $trip, AcceptTripRequest $request)
     {
 
     }
 
-    public function start(Trip $trip)
+    public function start(Trip $trip, StartTripRequest $request)
     {
 
     }
 
-    public function end(Trip $trip)
+    public function end(Trip $trip, EndTripRequest $request)
     {
 
     }
 
-    public function location(Trip $trip)
+    public function location(Trip $trip, LocationTripRequest $request)
     {
 
     }

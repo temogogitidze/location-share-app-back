@@ -21,11 +21,13 @@ class DriverRepository implements DriverRepositoryInterface
         return $user->load($relations);
     }
 
-    public function update(ParameterBag $data, ParameterBag $options): User
+    public function update(ParameterBag $data, ParameterBag $options, string $name): User
     {
         $relations = $options->get('relations') ?? null;
 
         $user = Auth::user();
+
+        $user->update(['name' => $name]);
 
         $user->driver()->updateOrCreate($data->all());
 

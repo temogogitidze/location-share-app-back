@@ -8,5 +8,5 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 interface DriverRepositoryInterface
 {
     public function get(ParameterBag $options): User;
-    public function update(ParameterBag $data, ParameterBag $options): User;
+    public function update(ParameterBag $data, ParameterBag $options, string $name): User;
 }

@@ -2,8 +2,10 @@
 
 namespace App\Services\Driver;
 
+use Symfony\Component\HttpFoundation\ParameterBag;
+
 interface DriverServiceInterface
 {
     public function get();
-    public function update();
+    public function update(ParameterBag $data);
 }

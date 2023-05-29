@@ -13,7 +13,12 @@ class UpdateDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'year' => ['required', 'numeric', 'between:2010,2024'],
+            'make' => ['required'],
+            'model' => ['required'],
+            'color' => ['required', 'alpha'],
+            'license_plate' => ['required'],
+            'name' => 'required'
         ];
     }
 }

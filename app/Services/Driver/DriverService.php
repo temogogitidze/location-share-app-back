@@ -3,7 +3,6 @@
 namespace App\Services\Driver;
 
 use App\Repositories\Driver\DriverRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DriverService implements DriverServiceInterface
@@ -21,8 +20,8 @@ class DriverService implements DriverServiceInterface
 
         return $this->repository->get($options);
     }
-    public function update()
+    public function update(ParameterBag $data)
     {
-        // TODO: Implement update() method.
+
     }
 }

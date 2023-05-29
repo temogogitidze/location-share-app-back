@@ -12,10 +12,15 @@ Route::post('/login/verify', [LoginController::class, 'verify'])->name('login.ve
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
-    Route::get('driver', [DriverController::class, 'get'])->name('driver.get');
-    Route::post('driver', [DriverController::class, 'update'])->name('driver.update');
+    Route::prefix('driver')->group(function () {
+        Route::get('/', [DriverController::class, 'get'])->name('driver.get');
+        Route::post('/', [DriverController::class, 'update'])->name('driver.update');
+    });
 
-    Route::post('/trip', [TripController::class, 'store'])->name('trip.store');
+    Route::prefix('trip')->group(function () {
+        Route::post('/trip', [TripController::class, 'store'])->name('trip.store');
+        Route::get('/trip/{trip}', [TripController::class, 'get'])->name('trip.get');
+    });
 
     Route::get('/user', function (Request $request) {
         return $request->user();

@@ -22,8 +22,8 @@ class TripController extends Controller
         return $this->service->store(new ParameterBag($request->validated()));
     }
 
-    public function get(Trip $trip, GetTripRequest $request)
+    public function get(Trip $trip, GetTripRequest $request): Trip
     {
-        return response()->json(['message' => 'Cannot find trip'], 404);
+        return $this->service->get($trip->id);
     }
 }

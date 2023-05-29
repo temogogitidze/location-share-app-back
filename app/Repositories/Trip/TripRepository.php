@@ -13,8 +13,14 @@ class TripRepository implements TripRepositoryInterface
     {
     }
 
-    public function store(ParameterBag $data)
+    public function store(ParameterBag $data): Bool
     {
         return $this->model->create($data->all());
+    }
+
+    public function get(int $id): ?Trip
+    {
+        return $this->model->where('id', $id)
+            ->firstOrFail();
     }
 }

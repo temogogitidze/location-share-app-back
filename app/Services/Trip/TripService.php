@@ -39,7 +39,11 @@ class TripService implements TripServiceInterface
     {
         $data->set('driver_id', Auth::user()->id);
 
-        return $this->repository->update($id, $data);
+        $options = new ParameterBag([
+            'relations' => ['driver.user']
+        ]);
+
+        return $this->repository->update($id, $data, $options);
     }
 
 }

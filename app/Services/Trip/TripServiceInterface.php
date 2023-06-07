@@ -9,5 +9,5 @@ interface TripServiceInterface
 {
     public function store(ParameterBag $data): Bool;
     public function get(int $id): ?Trip;
-
+    public function update(int $id, ParameterBag $data);
 }

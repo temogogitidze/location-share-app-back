@@ -24,11 +24,17 @@ class TripRepository implements TripRepositoryInterface
             ->firstOrFail();
     }
 
-    public function update(int $id, ParameterBag $data)
+    public function update(int $id, ParameterBag $data, ParameterBag $options)
     {
-        return $this->model->where('id', $id)
+        $relations = $options->get('relations') ?? null;
+
+        $query = $this->model->newQuery();
+
+        $updatedTrip = $this->model->where('id', $id)
             ->update([
                 'driver_location' => $data->get('driver_location')
             ]);
+
+        return $updatedTrip->with($relations);
     }
 }

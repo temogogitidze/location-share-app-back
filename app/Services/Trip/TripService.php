@@ -2,6 +2,10 @@
 
 namespace App\Services\Trip;
 
+use App\Events\TripAccepted;
+use App\Events\TripEnded;
+use App\Events\TripLocationUpdated;
+use App\Events\TripStarted;
 use App\Models\Trip;
 use App\Repositories\Trip\TripRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +32,7 @@ class TripService implements TripServiceInterface
     {
         $trip = $this->repository->get($id);
 
-        if ($trip) {
+        if (!$trip) {
             throw new HttpException(404, 'Cannot find trip');
         }
 
@@ -43,7 +47,12 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        return $this->repository->accept($id, $data, $options);
+
+        $trip = $this->repository->accept($id, $data, $options);
+
+        TripAccepted::dispatch($trip, Auth::user());
+
+        return $trip;
     }
 
     public function start(int $id, ParameterBag $data): Trip
@@ -56,7 +65,11 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        return $this->repository->start($id, $data, $options);
+        $trip = $this->repository->start($id, $data, $options);
+
+        TripStarted::dispatch($trip, Auth::user());
+
+        return $trip;
     }
 
 
@@ -70,7 +83,11 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        return $this->repository->start($id, $data, $options);
+        $trip = $this->repository->start($id, $data, $options);
+
+        TripEnded::dispatch($trip, Auth::user());
+
+        return $trip;
     }
 
     public function location(int $id, ParameterBag $data): Trip
@@ -79,7 +96,11 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        return $this->repository->start($id, $data, $options);
+        $trip = $this->repository->start($id, $data, $options);
+
+        TripLocationUpdated::dispatch($trip, Auth::user());
+
+        return $trip;
     }
 
 }

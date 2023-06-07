@@ -15,7 +15,7 @@ class TripService implements TripServiceInterface
     {
     }
 
-    public function store(ParameterBag $data): Bool
+    public function store(ParameterBag $data): Trip
     {
         $user = Auth::user();
 

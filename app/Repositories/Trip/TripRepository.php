@@ -13,7 +13,7 @@ class TripRepository implements TripRepositoryInterface
     {
     }
 
-    public function store(ParameterBag $data): Bool
+    public function store(ParameterBag $data): Trip
     {
         return $this->model->create($data->all());
     }

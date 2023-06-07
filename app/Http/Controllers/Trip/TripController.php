@@ -21,9 +21,9 @@ class TripController extends Controller
     {
     }
 
-    public function store(StoreTripRequest $request)
+    public function store(StoreTripRequest $request): TripResource
     {
-        return $this->service->store(new ParameterBag($request->validated()));
+        return TripResource::make($this->service->store(new ParameterBag($request->validated())));
     }
 
     public function get(Trip $trip, GetTripRequest $request): TripResource
@@ -46,7 +46,7 @@ class TripController extends Controller
         return TripResource::make($this->service->end($trip->id, new ParameterBag($request->validated())));
     }
 
-    public function location(Trip $trip, LocationTripRequest $request)
+    public function location(Trip $trip, LocationTripRequest $request): TripResource
     {
         return TripResource::make($this->service->location($trip->id, new ParameterBag($request->validated())));
     }

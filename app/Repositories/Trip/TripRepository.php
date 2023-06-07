@@ -54,7 +54,19 @@ class TripRepository implements TripRepositoryInterface
 
         $updatedTrip = $this->model->where('id', $id)
             ->update([
-                'is_started' => $data->get('is_started')
+                'is_complete' => $data->get('is_complete')
+            ]);
+
+        return $updatedTrip->with($relations);
+    }
+
+    public function location(int $id, ParameterBag $data, ParameterBag $options): Trip
+    {
+        $relations = $options->get('relations') ?? null;
+
+        $updatedTrip = $this->model->where('id', $id)
+            ->update([
+                'driver_location' => $data->get('driver_location')
             ]);
 
         return $updatedTrip->with($relations);

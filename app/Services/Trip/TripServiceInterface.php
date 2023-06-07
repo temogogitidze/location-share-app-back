@@ -12,4 +12,5 @@ interface TripServiceInterface
     public function accept(int $id, ParameterBag $data): Trip;
     public function start(int $id, ParameterBag $data): Trip;
     public function end(int $id, ParameterBag $data): Trip;
+    public function location(int $id, ParameterBag $data): Trip;
 }

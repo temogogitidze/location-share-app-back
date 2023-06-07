@@ -63,9 +63,18 @@ class TripService implements TripServiceInterface
     public function end(int $id, ParameterBag $data): Trip
     {
         $data->add([
-            'is_completed' => true,
+            'is_complete' => true,
         ]);
 
+        $options = new ParameterBag([
+            'relations' => ['driver.user']
+        ]);
+
+        return $this->repository->start($id, $data, $options);
+    }
+
+    public function location(int $id, ParameterBag $data): Trip
+    {
         $options = new ParameterBag([
             'relations' => ['driver.user']
         ]);

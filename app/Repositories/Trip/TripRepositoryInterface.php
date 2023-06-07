@@ -12,4 +12,5 @@ interface TripRepositoryInterface
     public function accept(int $id, ParameterBag $data, ParameterBag $options): Trip;
     public function start(int $id, ParameterBag $data, ParameterBag $options): Trip;
     public function end(int $id, ParameterBag $data, ParameterBag $options): Trip;
+    public function location(int $id, ParameterBag $data, ParameterBag $options): Trip;
 }

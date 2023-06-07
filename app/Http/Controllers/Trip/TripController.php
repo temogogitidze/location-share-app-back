@@ -48,6 +48,6 @@ class TripController extends Controller
 
     public function location(Trip $trip, LocationTripRequest $request)
     {
-
+        return TripResource::make($this->service->location($trip->id, new ParameterBag($request->validated())));
     }
 }

@@ -35,7 +35,7 @@ class TripService implements TripServiceInterface
         return $trip;
     }
 
-    public function update(int $id, ParameterBag $data)
+    public function accept(int $id, ParameterBag $data): Trip
     {
         $data->set('driver_id', Auth::user()->id);
 
@@ -43,7 +43,7 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        return $this->repository->update($id, $data, $options);
+        return $this->repository->accept($id, $data, $options);
     }
 
 }

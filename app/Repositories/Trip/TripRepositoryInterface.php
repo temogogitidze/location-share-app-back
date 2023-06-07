@@ -9,6 +9,6 @@ interface TripRepositoryInterface
 {
     public function store(ParameterBag $data): Bool;
     public function get(int $id): ?Trip;
-    public function update(int $id, ParameterBag $data, ParameterBag $options);
+    public function accept(int $id, ParameterBag $data, ParameterBag $options): Trip;
 
 }

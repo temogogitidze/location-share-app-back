@@ -2,6 +2,7 @@
 
 namespace App\Services\Trip;
 
+use App\Events\TripAccepted;
 use App\Models\Trip;
 use App\Repositories\Trip\TripRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,8 @@ class TripService implements TripServiceInterface
         if (!$trip) {
             throw new HttpException(404, 'Cannot find trip');
         }
+
+        TripAccepted::dispatch($trip, Auth::user());
 
         return $trip;
     }

@@ -33,6 +33,7 @@ class TripController extends Controller
 
     public function accept(Trip $trip, AcceptTripRequest $request)
     {
+        $this->service->update($trip->id, new ParameterBag($request->validated()));
 
     }
 

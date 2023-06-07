@@ -13,7 +13,7 @@ class AcceptTripRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'driver_location' => ['required']
         ];
     }
 }

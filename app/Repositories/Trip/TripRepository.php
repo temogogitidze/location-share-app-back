@@ -23,4 +23,12 @@ class TripRepository implements TripRepositoryInterface
         return $this->model->where('id', $id)
             ->firstOrFail();
     }
+
+    public function update(int $id, ParameterBag $data)
+    {
+        return $this->model->where('id', $id)
+            ->update([
+                'driver_location' => $data->get('driver_location')
+            ]);
+    }
 }

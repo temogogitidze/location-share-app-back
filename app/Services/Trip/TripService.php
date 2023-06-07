@@ -35,4 +35,11 @@ class TripService implements TripServiceInterface
         return $trip;
     }
 
+    public function update(int $id, ParameterBag $data)
+    {
+        $data->set('driver_id', Auth::user()->id);
+
+        return $this->repository->update($id, $data);
+    }
+
 }

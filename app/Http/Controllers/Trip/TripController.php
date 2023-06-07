@@ -9,9 +9,9 @@ use App\Http\Requests\Trip\GetTripRequest;
 use App\Http\Requests\Trip\LocationTripRequest;
 use App\Http\Requests\Trip\StartTripRequest;
 use App\Http\Requests\Trip\StoreTripRequest;
+use App\Http\Resources\Trip\TripResource;
 use App\Models\Trip;
 use App\Services\Trip\TripServiceInterface;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class TripController extends Controller
@@ -26,15 +26,14 @@ class TripController extends Controller
         return $this->service->store(new ParameterBag($request->validated()));
     }
 
-    public function get(Trip $trip, GetTripRequest $request): Trip
+    public function get(Trip $trip, GetTripRequest $request): TripResource
     {
-        return $this->service->get($trip->id);
+        return TripResource::make($this->service->get($trip->id));
     }
 
-    public function accept(Trip $trip, AcceptTripRequest $request)
+    public function accept(Trip $trip, AcceptTripRequest $request): TripResource
     {
-        $this->service->accept($trip->id, new ParameterBag($request->validated()));
-
+        return TripResource::make($this->service->accept($trip->id, new ParameterBag($request->validated())));
     }
 
     public function start(Trip $trip, StartTripRequest $request)

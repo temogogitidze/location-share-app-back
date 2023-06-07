@@ -28,7 +28,7 @@ class TripService implements TripServiceInterface
     {
         $trip = $this->repository->get($id);
 
-        if ($trip) {
+        if (!$trip) {
             throw new HttpException(404, 'Cannot find trip');
         }
 

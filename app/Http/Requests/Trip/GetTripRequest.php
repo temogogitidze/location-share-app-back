@@ -11,7 +11,7 @@ class GetTripRequest extends FormRequest
         $trip = $this->route('trip');
         $user = $this->user();
 
-        if ($trip->user->id === $user->id && $trip->driver->id === $user->driver->id) {
+        if ($trip->user->id === $user->id) {
             return true;
         }
 

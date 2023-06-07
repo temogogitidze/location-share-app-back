@@ -4,6 +4,7 @@ namespace App\Services\Trip;
 
 use App\Models\Trip;
 use App\Repositories\Trip\TripRepositoryInterface;
+use http\Params;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -44,6 +45,19 @@ class TripService implements TripServiceInterface
         ]);
 
         return $this->repository->accept($id, $data, $options);
+    }
+
+    public function start(int $id, ParameterBag $data): Trip
+    {
+        $data->add([
+            'is_started' => true,
+        ]);
+
+        $options = new ParameterBag([
+            'relations' => ['driver.user']
+        ]);
+
+        return $this->repository->start($id, $data, $options);
     }
 
 }

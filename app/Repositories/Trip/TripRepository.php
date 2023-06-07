@@ -35,4 +35,17 @@ class TripRepository implements TripRepositoryInterface
 
         return $updatedTrip->with($relations);
     }
+
+    public function start(int $id, ParameterBag $data, ParameterBag $options): Trip
+    {
+        $relations = $options->get('relations') ?? null;
+
+        $updatedTrip = $this->model->where('id', $id)
+            ->update([
+                'is_started' => $data->get('is_started')
+            ]);
+
+        return $updatedTrip->with($relations);
+
+    }
 }

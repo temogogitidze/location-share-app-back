@@ -36,9 +36,9 @@ class TripController extends Controller
         return TripResource::make($this->service->accept($trip->id, new ParameterBag($request->validated())));
     }
 
-    public function start(Trip $trip, StartTripRequest $request)
+    public function start(Trip $trip, StartTripRequest $request): TripResource
     {
-
+        return TripResource::make($this->service->start($trip->id, new ParameterBag($request->validated())));
     }
 
     public function end(Trip $trip, EndTripRequest $request)

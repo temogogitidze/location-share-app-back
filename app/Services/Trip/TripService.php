@@ -3,6 +3,7 @@
 namespace App\Services\Trip;
 
 use App\Events\TripAccepted;
+use App\Events\TripCreated;
 use App\Events\TripEnded;
 use App\Events\TripLocationUpdated;
 use App\Events\TripStarted;
@@ -25,7 +26,15 @@ class TripService implements TripServiceInterface
 
         $data->set('user_id' , $user->id);
 
-        return $this->repository->store($data);
+        $trip = $this->repository->store($data);
+
+        if (!$trip) {
+            throw new HttpException(400, 'Can not save the trip');
+        }
+
+        TripCreated::dispatch($trip, $user);
+
+        return $trip;
     }
 
     public function get(int $id): ?Trip

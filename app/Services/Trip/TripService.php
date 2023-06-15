@@ -56,7 +56,6 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-
         $trip = $this->repository->accept($id, $data, $options);
 
         TripAccepted::dispatch($trip, Auth::user());

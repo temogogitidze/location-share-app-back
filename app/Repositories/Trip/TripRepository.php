@@ -28,12 +28,14 @@ class TripRepository implements TripRepositoryInterface
     {
         $relations = $options->get('relations') ?? null;
 
-        $updatedTrip = $this->model->where('id', $id)
-            ->update([
-                'driver_location' => $data->get('driver_location')
-            ]);
+        $trip = $this->get($id);
 
-        return $updatedTrip->with($relations);
+        $trip->update([
+            'driver_location' => $data->get('driver_location'),
+            'driver_id' => $data->getInt('driver_id')
+        ]);
+
+        return $trip->load($relations);
     }
 
     public function start(int $id, ParameterBag $data, ParameterBag $options): Trip

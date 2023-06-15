@@ -12,16 +12,15 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TripCreated
+class TripCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public Trip $trip, public User $user)
+    public function __construct(public Trip $trip, private User $user)
     {
-        //
     }
 
     /**
@@ -32,7 +31,7 @@ class TripCreated
     public function broadcastOn(): array
     {
         return [
-            new Channel('drivers'),
+            new Channel('drivers')
         ];
     }
 }

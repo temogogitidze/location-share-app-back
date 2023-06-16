@@ -21,9 +21,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/', [TripController::class, 'store'])->name('trip.store');
         Route::get('/{trip}', [TripController::class, 'get'])->name('trip.get');
         Route::post('/{trip}/accept', [TripController::class, 'accept'])->name('trip.accept');
-        Route::get('/{trip}/start', [TripController::class, 'start'])->name('trip.start');
-        Route::get('/{trip}/end', [TripController::class, 'end'])->name('trip.end');
-        Route::get('/{trip}/location', [TripController::class, 'location'])->name('trip.location');
+        Route::post('/{trip}/start', [TripController::class, 'start'])->name('trip.start');
+        Route::post('/{trip}/end', [TripController::class, 'end'])->name('trip.end');
+        Route::post('/{trip}/location', [TripController::class, 'location'])->name('trip.location');
     });
 
     Route::get('/user', function (Request $request) {

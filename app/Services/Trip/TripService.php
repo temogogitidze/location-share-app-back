@@ -58,7 +58,7 @@ class TripService implements TripServiceInterface
 
         $trip = $this->repository->accept($id, $data, $options);
 
-        TripAccepted::dispatch($trip, Auth::user());
+        TripAccepted::dispatch($trip, $trip->user);
 
         return $trip;
     }
@@ -104,7 +104,7 @@ class TripService implements TripServiceInterface
             'relations' => ['driver.user']
         ]);
 
-        $trip = $this->repository->start($id, $data, $options);
+        $trip = $this->repository->location($id, $data, $options);
 
         TripLocationUpdated::dispatch($trip, Auth::user());
 

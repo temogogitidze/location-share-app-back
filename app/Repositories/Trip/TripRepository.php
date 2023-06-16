@@ -45,8 +45,7 @@ class TripRepository implements TripRepositoryInterface
         $trip = $this->get($id);
 
         $trip->update([
-            'is_started' => $data->get('is_started')
-
+            'is_started' => true
         ]);
 
         return $trip->load($relations);
